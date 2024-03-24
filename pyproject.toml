@@ -2,7 +2,7 @@
 name = "hexlet-code"
 version = "0.1.1"
 description = "hexlet tasks manager"
-authors = ["Vadim Berezhnoy  gpopperony@gmail.com"]
+authors = ["Vadim Berezhnoy  <gpopperony@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/popperony/python-project-52"
 packages = [{ include = "task_manager" }]

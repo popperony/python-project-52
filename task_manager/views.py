@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import activate
 from django.views.generic.base import TemplateView
+
 from task_manager import texts
 
 
@@ -29,11 +30,6 @@ class IndexView(BasicView):
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):
-    """
-    Login user by login form
-    Redirect to home page for authorized users
-    Make message about success with SuccessMessageMixin
-    """
     template_name = 'form.html'
     form_class = AuthenticationForm
     extra_context = {
@@ -47,11 +43,6 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 
 class UserLogoutView(LogoutView):
-    """
-    Logout user
-    Redirect on home page
-    Change dispatch method to make message about success
-    """
     next_page = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):

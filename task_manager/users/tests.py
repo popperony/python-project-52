@@ -1,20 +1,20 @@
-from django.test import TestCase, Client
-from django.urls import reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.deletion import ProtectedError
+from django.test import TestCase, Client
+from django.urls import reverse_lazy
 
-from task_manager.users.models import User
 from task_manager import texts
+from task_manager.users.models import User
 
 
 class UsersTest(TestCase):
     fixtures = ['users.json', 'statuses.json', 'tasks.json', 'labels.json']
     test_user = {
-        'username': 'Test',
-        'first_name': 'Test',
-        'last_name': 'Test',
-        'password1': '123',
-        'password2': '123',
+        'username': 'TestUser',
+        'first_name': 'User1',
+        'last_name': 'User1',
+        'password1': 'qwerty',
+        'password2': 'qwerty',
     }
 
     def setUp(self):

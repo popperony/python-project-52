@@ -1,19 +1,14 @@
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from task_manager.users.models import User
-from task_manager.users.forms import UserForm, UpdateUserForm
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
 from task_manager import texts
-from task_manager.custom_mixins import AuthCheckMixin, \
-    PermissionCheckMixin, ProtectDeleteMixin
+from task_manager.mixins import AuthCheckMixin, PermissionCheckMixin, ProtectDeleteMixin
+from task_manager.users.forms import UserForm, UpdateUserForm
+from task_manager.users.models import User
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
-    """
-    Register new user by UserForm
-    Redirect to login page
-    Make message about success with SuccessMessageMixin
-    """
     template_name = 'form.html'
     model = User
     form_class = UserForm
@@ -27,9 +22,6 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 
 class UsersListView(ListView):
-    """
-    List of users
-    """
     template_name = 'users/list.html'
     model = User
     context_object_name = 'users'
@@ -39,22 +31,7 @@ class UsersListView(ListView):
     }
 
 
-class UserUpdateView(
-    AuthCheckMixin,
-    PermissionCheckMixin,
-    SuccessMessageMixin,
-    UpdateView
-):
-    """
-    Change user datas by UpdateUserForm
-    Using UpdateUserForm allows to make changes while keeping
-    the old username
-    In success redirect to list of users and make message
-    about success with SuccessMessageMixin
-    User can only edit himself - if edit other user redirect
-    to permission_url
-    and make permission_message about error with PermissionCheckMixin
-    """
+class UserUpdateView(AuthCheckMixin, PermissionCheckMixin, SuccessMessageMixin, UpdateView):
     template_name = 'form.html'
     model = User
     form_class = UpdateUserForm
@@ -73,22 +50,7 @@ class UserUpdateView(
     }
 
 
-class UserDeleteView(
-    AuthCheckMixin,
-    PermissionCheckMixin,
-    ProtectDeleteMixin,
-    SuccessMessageMixin,
-    DeleteView
-):
-    """
-    Delete existing user.
-    In success redirect to list of users and make message
-    about success with SuccessMessageMixin
-    User can only delete himself - if delete other user
-    redirect to permission_url
-    and make permission_message about error with PermissionCheckMixin
-    Can not delete user associated with tasks
-    """
+class UserDeleteView( AuthCheckMixin, PermissionCheckMixin, ProtectDeleteMixin, SuccessMessageMixin, DeleteView):
     template_name = 'delete.html'
     model = User
 

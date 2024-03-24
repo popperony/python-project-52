@@ -18,7 +18,7 @@ compile-texts:
 static:
 	poetry run python manage.py collectstatic --noinput
 
-create-superuser:
+2superuser:
 	poetry run python manage.py createsuper
 
 migrate:

@@ -1,7 +1,6 @@
 # General
 .DS_Store
 .env
-
 # Python
 *.egg-info
 __pycache__
