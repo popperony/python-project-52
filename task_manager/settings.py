@@ -21,7 +21,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.onrender.com'
 ]
 
-#apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
