@@ -68,7 +68,12 @@ class TaskUpdateView(AuthCheckMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class TaskDeleteView(AuthCheckMixin, AuthorCheckMixin, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(
+    AuthCheckMixin,
+    AuthorCheckMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
 
     template_name = 'delete.html'
     model = Task

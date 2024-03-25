@@ -3,7 +3,10 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from task_manager import texts
-from task_manager.mixins import AuthCheckMixin, PermissionCheckMixin, ProtectDeleteMixin
+from task_manager.mixins import (AuthCheckMixin,
+                                 PermissionCheckMixin,
+                                 ProtectDeleteMixin
+                                 )
 from task_manager.users.forms import UserForm, UpdateUserForm
 from task_manager.users.models import User
 
@@ -31,7 +34,12 @@ class UsersListView(ListView):
     }
 
 
-class UserUpdateView(AuthCheckMixin, PermissionCheckMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(
+    AuthCheckMixin,
+    PermissionCheckMixin,
+    SuccessMessageMixin,
+    UpdateView
+):
     template_name = 'form.html'
     model = User
     form_class = UpdateUserForm
@@ -50,7 +58,13 @@ class UserUpdateView(AuthCheckMixin, PermissionCheckMixin, SuccessMessageMixin, 
     }
 
 
-class UserDeleteView( AuthCheckMixin, PermissionCheckMixin, ProtectDeleteMixin, SuccessMessageMixin, DeleteView):
+class UserDeleteView(
+    AuthCheckMixin,
+    PermissionCheckMixin,
+    ProtectDeleteMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     template_name = 'delete.html'
     model = User
 

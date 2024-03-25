@@ -7,9 +7,22 @@ from task_manager.users.models import User
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=150, blank=False, unique=True, verbose_name=create_tasks['task_name'])
-    description = models.TextField(max_length=1000, blank=True, null=True, verbose_name=create_tasks['task_description'])
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=create_tasks['task_date'])
+    name = models.CharField(
+        max_length=150,
+        blank=False,
+        unique=True,
+        verbose_name=create_tasks['task_name']
+    )
+    description = models.TextField(
+        max_length=1000,
+        blank=True,
+        null=True,
+        verbose_name=create_tasks['task_description']
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=create_tasks['task_date']
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
